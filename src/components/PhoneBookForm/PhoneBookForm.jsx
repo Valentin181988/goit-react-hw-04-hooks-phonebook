@@ -67,7 +67,7 @@ export function PhoneBookForm({onSubmit}) {
             onChange={handleChange}/>
         <SubmitButton
             type="submit"
-            /* disabled={!this.state.number || !this.state.name} */>Add contact
+            disabled={!number || !name}>Add contact
         </SubmitButton>
   </Form>
 );
