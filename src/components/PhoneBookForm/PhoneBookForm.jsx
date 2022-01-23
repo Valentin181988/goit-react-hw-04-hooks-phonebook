@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 
 import { Form, Label, Input, SubmitButton } from "./PhoneBookForm.styled";
 
-export function PhoneBookForm() {
+export function PhoneBookForm({onSubmit}) {
 
   const nameInputId = nanoid();
   const numberInputId = nanoid();
@@ -29,9 +29,21 @@ export function PhoneBookForm() {
     };
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    console.log(name)
+    console.log(number)
+
+    onSubmit({name, number})
+    
+    setName('');
+    setNumber('');
+};
+
 
   return (
-    <Form /* onSubmit={this.handleSubmit} */>
+    <Form onSubmit={handleSubmit}>
         <Label htmlFor={nameInputId}>Name</Label>
         <Input
             type="text"
