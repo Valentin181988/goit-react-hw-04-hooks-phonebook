@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { nanoid } from 'nanoid';
 import { PhoneBookTitle } from "./PhoneBookTitle/PhoneBookTitle";
 import { PhoneBookForm } from './PhoneBookForm/PhoneBookForm';
@@ -37,7 +37,6 @@ export const App = () => {
   const getVisibleContacts = () => {
 
     const normalizedFilter = filter.toLowerCase();
-    console.log(contacts)
 
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter));
@@ -47,20 +46,18 @@ export const App = () => {
     setContacts(prevState => prevState.filter(contact => contact.id !== contactId));
   };
 
-  /* componentDidMount() {
+  useEffect(() => {
     const contacts = localStorage.getItem('contacts');
     const contactsParsed = JSON.parse(contacts);
 
     if (contactsParsed) {
-      this.setState({contacts: contactsParsed});
+      setContacts(contactsParsed);
     };
-  };
+  }, []);
 
-  componentDidUpdate(prevProps, prevState) {
-     if (this.state.contacts !== prevState.contacts) {
-        localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-     };
-  }; */
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts))
+  }, [contacts]);
 
       const searchContact = getVisibleContacts();
 
