@@ -32,9 +32,6 @@ export function PhoneBookForm({onSubmit}) {
   const handleSubmit = event => {
     event.preventDefault();
 
-    console.log(name)
-    console.log(number)
-
     onSubmit({name, number})
     
     setName('');
